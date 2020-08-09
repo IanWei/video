@@ -6,17 +6,17 @@ import { StyledPlaylist } from 'features/playlist/StyledPlaylist';
 import {  Video } from '../types';
 
 interface Props {
-    videos: Video[],
+    videos: Video[]
     active: Video
-    nightModeCallBack(): void
     nightMode: boolean
+    nightModeCallBack(): void
 }
 
 export const Playlist: FC<Props> = ( { active, nightMode, nightModeCallBack, videos }: Props ) => {
     return (
         <StyledPlaylist>
             <NightMode nightMode={nightMode} nightModeCallback={nightModeCallBack}/>
-            <PlaylistHeader active={active} total={0}/>
+            <PlaylistHeader active={active} total={videos.length}/>
             <PlaylistItems active={active} videos={videos}/>
         </StyledPlaylist>
     )

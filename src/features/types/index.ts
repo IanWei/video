@@ -11,3 +11,12 @@ export interface Video {
     played: boolean
     video: string
 }
+
+export interface ProgressState {
+    played: number
+    playedSeconds: number
+    loaded: number
+    loadedSeconds: number
+}
+
+// { played: number, playedSeconds: number, loaded: number, loadedSeconds: number }

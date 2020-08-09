@@ -34,8 +34,9 @@ export const StyledPlaylistItem = styled.div<Props>`
         min-height: 10px;
         background: #409f4e;
         position: absolute;
-        left: 0;
-        top: 19px;
+        border-radius: 50%;
+        left: -15px;
+        top: 20px;
     }
     
     .wbn-player__video-nr {
@@ -49,7 +50,7 @@ export const StyledPlaylistItem = styled.div<Props>`
     .wbn-player__video-name a {
         flex-grow: 10;
         padding: 0 0 0 10px;
-        color: ${p => p.theme.color};
+        color: ${({ theme }) => theme.color};
         text-align: left;
         text-decoration: none;
         display: block;

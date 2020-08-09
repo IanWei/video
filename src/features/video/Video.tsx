@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import ReactPlayer from 'react-player';
 import { StyledVideoWrapper } from './StyledVideoWrapper';
 import { StyledVideo } from './StyledVideo';
-import { Video as VideoType } from '../types';
+import { ProgressState, Video as VideoType } from '../types';
 
 interface Props {
     active: VideoType,
     autoplay: boolean,
     endCallback(): void,
-    progressCallback(): void
+    progressCallback(state: ProgressState): void
 }
 
 export const Video: FC<Props> = ( { active, autoplay, endCallback, progressCallback }: Props ) => {

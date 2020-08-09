@@ -6,7 +6,7 @@ import { PlaylistHeader } from 'components/PlaylistHeader';
 import { Playlist } from '../playlist/Playlist';
 import { StyledWbnPlayer } from './StyledWbnPlayer';
 import { light, dark } from 'theme';
-import { Video as VideoType, Videos } from '../types';
+import { ProgressState, Video as VideoType, Videos } from '../types';
 import { Video } from '../video/Video';
 
 interface Props extends RouteComponentProps<Params, {}, AutoPlay> {}
@@ -59,19 +59,43 @@ export const WbnPlayer: FC<Props> = ({ match, location, history }: Props) => {
 
 
     const nightModeCallback = () => {
-
+        setState(prev => ({
+            ...prev,
+            nightMode: !prev.nightMode
+        }))
     }
 
     const endCallback = () => {
-
+        const videoId = match.params.activeVideo;
+        const currentVideoIndex = videos.findIndex(({ id }) => id === videoId);
+        const nextVideoIndex = currentVideoIndex === videos.length - 1 ? 0 : currentVideoIndex + 1;
+        history.push({
+            pathname: `${videos[nextVideoIndex].id}`,
+            state: false
+        })
     }
 
-    const progressCallback = () => {
-
+    const progressCallback = (e: ProgressState) => {
+        if (e.playedSeconds > 10 && e.playedSeconds < 11) {
+            const playedVideos = videos.find( video => video.id === activeVideo.id);
+            playedVideos!.played = true;
+            setState(prevState => ({
+                ...prevState,
+                videos
+            }));
+            // setState({
+            //     ...state,
+            //     videos: videos.map((el) => {
+            //         return el.id === activeVideo.id
+            //             ? { ...el, played: true }
+            //             : el
+            //     })
+            // })
+        }
     }
 
     return (
-        <ThemeProvider theme={dark}>
+        <ThemeProvider theme={nightMode ? dark : light}>
             <StyledWbnPlayer>
                 <Video
                     active={activeVideo}
