@@ -1,11 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { NightMode } from 'components/NightMode';
-import { PlaylistHeader } from 'components/PlaylistHeader';
 import { Playlist } from '../playlist/Playlist';
 import { StyledWbnPlayer } from './StyledWbnPlayer';
-import { light, dark } from 'theme';
+import { dark, light } from 'theme';
 import { ProgressState, Video as VideoType, Videos } from '../types';
 import { Video } from '../video/Video';
 
@@ -28,6 +26,7 @@ interface State {
 export const WbnPlayer: FC<Props> = ({ match, location, history }: Props) => {
 
     const videoSource: Videos = JSON.parse(document.querySelector<HTMLInputElement>('[name="videos"]')!.value);
+    const retrievedData = window.localStorage.getItem(`${videoSource.playlistId}`);
 
     const initialState: State = {
         activeVideo: videoSource.playlist[0],
@@ -37,8 +36,14 @@ export const WbnPlayer: FC<Props> = ({ match, location, history }: Props) => {
         nightMode: false,
     }
 
-    const [state, setState] = useState(initialState);
-    const { nightMode, autoplay, activeVideo, videos } = state;
+    const savedState = retrievedData ? JSON.parse(retrievedData) as State : initialState;
+
+    const [state, setState] = useState(savedState);
+    const { nightMode, autoplay, activeVideo, videos, playlistId } = state;
+
+    useEffect(() => {
+        window.localStorage.setItem(`${playlistId}`, JSON.stringify({...state}))
+    }, [playlistId, state]);
 
     useEffect(() => {
         const videoId = match.params.activeVideo;
