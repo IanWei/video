@@ -1,7 +1,7 @@
 import React from 'react';
-import { WbnPlayer } from './features/video/WbnPlayer';
+import { WbnPlayer } from './features/wbnPlayer/WbnPlayer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { GlobalStyle } from './styles/GlobalStyle';
+import { GlobalStyle } from './styleComponents';
 
 function App() {
   return (

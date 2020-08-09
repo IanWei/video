@@ -1,8 +1,31 @@
 import React, { FC } from 'react';
 import ReactPlayer from 'react-player';
+import { StyledVideoWrapper } from './StyledVideoWrapper';
+import { StyledVideo } from './StyledVideo';
+import { Active } from '../types';
 
-export const Video: FC = () => {
+interface Props {
+    active: Active,
+    autoplay: boolean,
+    endCallback(): void,
+    progressCallback(): void
+}
+
+export const Video: FC<Props> = ( { active, autoplay, endCallback, progressCallback }: Props ) => {
     return (
-        <div>Video</div>
+        <StyledVideo>
+            <StyledVideoWrapper>
+                <ReactPlayer
+                    width='100%'
+                    height='100%'
+                    style={ { position: 'absolute', top: '0' } }
+                    playing={autoplay}
+                    controls={true}
+                    url={active.video}
+                    onEnded={endCallback}
+                    onProgress={progressCallback}
+                />
+            </StyledVideoWrapper>
+        </StyledVideo>
     )
 }

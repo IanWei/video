@@ -1,7 +1,20 @@
 import React, { FC } from 'react';
+import { StyledJourney } from './StyledJourney';
+import { StyledPlaylistHeader } from './StyledPlaylistHeader';
+import { Active } from 'features/types';
 
-export const PlaylistHeader:FC = () => {
+interface Props {
+    active: Active,
+    total: number
+}
+
+export const PlaylistHeader: FC<Props> = ( { active, total }: Props ) => {
     return (
-        <div>PlaylistHeader</div>
+        <StyledPlaylistHeader>
+            <p>{active.title}</p>
+            <StyledJourney>
+                {active.num} / {total}
+            </StyledJourney>
+        </StyledPlaylistHeader>
     )
 }
