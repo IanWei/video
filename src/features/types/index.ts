@@ -5,7 +5,7 @@ export interface Videos {
 
 export interface Video {
     id: string
-    title: string
+    title: string | React.ReactNode
     num: number
     duration: number
     played: boolean
