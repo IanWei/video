@@ -3,16 +3,21 @@ import { NightMode } from 'components/NightMode';
 import { PlaylistHeader } from 'components/PlaylistHeader';
 import { PlaylistItems } from '../playlistItems/PlaylistItems';
 import { StyledPlaylist } from 'features/playlist/StyledPlaylist';
-import { Active } from '../types';
+import {  Video } from '../types';
 
+interface Props {
+    videos: Video[],
+    active: Video
+    nightModeCallBack(): void
+    nightMode: boolean
+}
 
-
-export const Playlist: FC = () => {
+export const Playlist: FC<Props> = ( { active, nightMode, nightModeCallBack, videos }: Props ) => {
     return (
         <StyledPlaylist>
-            <NightMode nightMode={true} nightModeCallback={() => {}}/>
-            <PlaylistHeader active={{} as Active} total={0}/>
-            <PlaylistItems/>
+            <NightMode nightMode={nightMode} nightModeCallback={nightModeCallBack}/>
+            <PlaylistHeader active={active} total={0}/>
+            <PlaylistItems active={active} videos={videos}/>
         </StyledPlaylist>
     )
 }

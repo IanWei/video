@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { StyledJourney } from './StyledJourney';
 import { StyledPlaylistHeader } from './StyledPlaylistHeader';
-import { Active } from 'features/types';
+import { Video } from '../features/types';
 
 interface Props {
-    active: Active,
+    active: Video,
     total: number
 }
 

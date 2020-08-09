@@ -8,7 +8,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={WbnPlayer}/>
-          <Route exact path="/:activeVideo" component={WbnPlayer}/>
+          <Route path="/:activeVideo" component={WbnPlayer}/>
         </Switch>
         <GlobalStyle/>
       </BrowserRouter>

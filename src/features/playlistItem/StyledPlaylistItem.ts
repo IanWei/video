@@ -3,13 +3,8 @@ import styled from 'styled-components';
 
 
 interface Props extends HtmlHTMLAttributes<HTMLDivElement> {
-    active: Active
+    active: boolean
     played?: boolean
-}
-
-interface Active {
-    title: string,
-    num: number
 }
 
 export const StyledPlaylistItem = styled.div<Props>`

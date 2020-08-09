@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import ReactPlayer from 'react-player';
 import { StyledVideoWrapper } from './StyledVideoWrapper';
 import { StyledVideo } from './StyledVideo';
-import { Active } from '../types';
+import { Video as VideoType } from '../types';
 
 interface Props {
-    active: Active,
+    active: VideoType,
     autoplay: boolean,
     endCallback(): void,
     progressCallback(): void

@@ -1,16 +1,25 @@
 import React, { FC } from 'react';
 import { PlaylistItem } from '../playlistItem/PlaylistItem';
 import { StyledPlaylistItems } from './StyledPlaylistItems';
-import { Active, Video } from '../types';
+import { Video } from '../types';
 
 interface Props {
-
+    active: Video
+    videos: Video[]
 }
 
-export const PlaylistItems: FC<Props> = () => {
+export const PlaylistItems: FC<Props> = ({active, videos}: Props) => {
     return (
         <StyledPlaylistItems>
-            <PlaylistItem active={{} as Active} video={{} as Video} played={false}/>
+            {videos.map(video => (
+                <PlaylistItem
+                    key={video.id}
+                    active={video.id === active.id}
+                    video={video}
+                    played={video.played}
+                />
+            ))}
+
         </StyledPlaylistItems>
     )
 }

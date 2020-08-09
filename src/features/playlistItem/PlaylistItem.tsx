@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { StyledPlaylistItem } from './StyledPlaylistItem';
-import { Active, Video } from '../types';
+import { Video } from '../types';
 
 interface Props {
     video: Video,
-    active: Active,
+    active: boolean,
     played: boolean
 }
 
